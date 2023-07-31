@@ -16,6 +16,26 @@ public class People {
         return id;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public Date getDataDeAniversario() {
+        return dataDeAniversario;
+    }
+
+    public Address getEndereco() {
+        return endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
     @Override
     public String toString() {
         return "People{" +
@@ -27,4 +47,7 @@ public class People {
                 ", telefone='" + telefone + '\'' +
                 '}';
     }
+
+
+
 }

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements LoginCallback {
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         setContentView(R.layout.activity_main);
         prepareScreen();
-        verifyLogin();
+//        verifyLogin();
 
 
     }
@@ -42,7 +42,14 @@ public class MainActivity extends AppCompatActivity implements LoginCallback {
         this.login = findViewById(R.id.login_field);
         this.senha = findViewById(R.id.password_field);
         this.button = findViewById(R.id.login_btn);
-        this.button.setOnClickListener(view -> userViewModel.login(new User(this.login.getText().toString(),this.senha.getText().toString()),this));
+        this.button.setOnClickListener(view ->{
+            if(!this.login.getText().toString().isBlank() && !this.senha.getText().toString().isBlank()) {
+                userViewModel.login(new User(this.login.getText().toString(),
+                                this.senha.getText().toString()), this);
+            }else{
+                Toast.makeText(this.getApplicationContext(),"POR FAVOR INSIRA SEUS DADOS", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

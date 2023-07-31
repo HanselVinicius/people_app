@@ -23,7 +23,7 @@ public class PeopleViewModel extends ViewModel {
     private static final String TAG = "VIEW MODEL PEOPLE";
     private final MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
 
-
+    private final MutableLiveData<List<People>> people = new MutableLiveData<>();
 
 
     public void getAll(String token){
@@ -42,8 +42,8 @@ public class PeopleViewModel extends ViewModel {
                                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
                                 PeopleResponseModel responseModel = gson.fromJson(json, PeopleResponseModel.class);
                                 List<People> peopleList = responseModel.getContent();
+                                people.postValue(peopleList);
 
-                                Log.e(TAG, "onResponse: people list " + peopleList.get(0).toString());
 
                             } else {
                                 if (response.code() == 403) {
@@ -66,5 +66,9 @@ public class PeopleViewModel extends ViewModel {
 
     public MutableLiveData<Integer> getErrorMessage() {
         return errorMessage;
+    }
+
+    public MutableLiveData<List<People>> getPeople() {
+        return people;
     }
 }
