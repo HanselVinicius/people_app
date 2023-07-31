@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.vinihans.persons_app.Application;
 import com.vinihans.persons_app.R;
 import com.vinihans.persons_app.model.people.People;
+import com.vinihans.persons_app.utils.AlertDialogUtil;
 
 import java.util.List;
 
@@ -18,9 +19,11 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
 
 
     private List<People> peopleList;
+    private String token;
 
-    public PeopleAdapter(List<People> peopleList) {
+    public PeopleAdapter(List<People> peopleList,String token) {
         this.peopleList = peopleList;
+        this.token = token;
     }
 
     @NonNull
@@ -36,7 +39,12 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         holder.nameField.setText(person.getNome());
         holder.telefoneField.setText(person.getTelefone());
         holder.enderecoField.setText(person.getEndereco().getRua() +", "+ person.getEndereco().getBairro()+", "+person.getEndereco().getBairro());
-        holder.nameField.setOnClickListener(view -> Application.apiService.delete(person.getId()));
+        holder.nameField.setOnClickListener(view -> AlertDialogUtil.deleteDialog(
+                "Deseja mesmo deletar este registro?",
+                holder.itemView.getContext(),
+                person,
+                token)
+        );
     }
 
     @Override
@@ -45,6 +53,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
             return 0;
         return peopleList.size();
     }
+
 
 
     public static class PeopleViewHolder extends RecyclerView.ViewHolder{

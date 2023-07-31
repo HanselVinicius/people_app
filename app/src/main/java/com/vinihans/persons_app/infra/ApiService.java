@@ -21,7 +21,8 @@ public interface ApiService {
     @GET("/v1/people")
     Call<ResponseBody> getAll(@Header("Authorization") String auth);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @DELETE("/v1/people/{id}")
-    Call<ResponseBody> delete(@Path("id") Long id);
+    Call<ResponseBody> delete(@Path("id") Long id,@Header("Authorization") String auth);
 
 }

@@ -9,16 +9,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vinihans.persons_app.R;
-import com.vinihans.persons_app.model.people.People;
 import com.vinihans.persons_app.view.adapters.PeopleAdapter;
 import com.vinihans.persons_app.view.view_model.PeopleViewModel;
 import com.vinihans.persons_app.view.view_model.RegisterActivity;
-
-import java.util.List;
 
 public class PeopleActivity extends AppCompatActivity {
 
@@ -53,9 +49,8 @@ public class PeopleActivity extends AppCompatActivity {
     public void prepareScreen(){
         recyclerView = findViewById(R.id.recyclerViewPeople);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        peopleAdapter = new PeopleAdapter(null);
+        peopleAdapter = new PeopleAdapter(null,this.token);
         recyclerView.setAdapter(peopleAdapter);
-
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(view -> {
                 Intent i = new Intent(PeopleActivity.this, RegisterActivity.class);
@@ -65,13 +60,11 @@ public class PeopleActivity extends AppCompatActivity {
 
 
     private void observePeople(){
-        peopleViewModel.getPeople().observe(this, new Observer<List<People>>() {
-            @Override
-            public void onChanged(List<People> people) {
-                if (people != null){
-                    peopleAdapter = new PeopleAdapter(people);
-                    recyclerView.setAdapter(peopleAdapter);
-                }
+
+        peopleViewModel.getListOfPeople().observe(this, people -> {
+            if (people != null){
+                peopleAdapter = new PeopleAdapter(people,this.token);
+                recyclerView.setAdapter(peopleAdapter);
             }
         });
     }
@@ -85,14 +78,8 @@ public class PeopleActivity extends AppCompatActivity {
 //                Intent i = new Intent(PeopleActivity.this, MainActivity.class);
 //                startActivity(i);
                 finish();
-                Log.e(TAG, "onChanged: testeeeeee" );
             }
         });
     }
-
-
-
-
-
 
 }

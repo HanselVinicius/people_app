@@ -2,7 +2,6 @@ package com.vinihans.persons_app.view.view_model;
 
 import android.util.Log;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -23,7 +22,7 @@ public class PeopleViewModel extends ViewModel {
     private static final String TAG = "VIEW MODEL PEOPLE";
     private final MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
 
-    private final MutableLiveData<List<People>> people = new MutableLiveData<>();
+    private static final MutableLiveData<List<People>> listOfPeople = new MutableLiveData<>();
 
 
     public void getAll(String token){
@@ -42,7 +41,7 @@ public class PeopleViewModel extends ViewModel {
                                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
                                 PeopleResponseModel responseModel = gson.fromJson(json, PeopleResponseModel.class);
                                 List<People> peopleList = responseModel.getContent();
-                                people.postValue(peopleList);
+                                listOfPeople.postValue(peopleList);
 
 
                             } else {
@@ -63,12 +62,35 @@ public class PeopleViewModel extends ViewModel {
         );
     }
 
+    public static void deleteOne(People people, String token){
+
+        Call<ResponseBody> delete = Application.apiService.delete(people.getId(), token);
+        delete.enqueue(new Callback<>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            // handle something??? yes handle something
+                if (response.isSuccessful()){
+                    List<People> currentPeopleList = listOfPeople.getValue();
+                    currentPeopleList.remove(people);
+                    listOfPeople.postValue(currentPeopleList);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                // handle something???
+                Log.e(TAG, "onFailure:  error on request ", t );
+            }
+        });
+
+    }
+
 
     public MutableLiveData<Integer> getErrorMessage() {
         return errorMessage;
     }
 
-    public MutableLiveData<List<People>> getPeople() {
-        return people;
+    public MutableLiveData<List<People>> getListOfPeople() {
+        return listOfPeople;
     }
 }
