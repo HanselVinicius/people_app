@@ -11,10 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vinihans.persons_app.R;
 import com.vinihans.persons_app.model.people.People;
 import com.vinihans.persons_app.view.adapters.PeopleAdapter;
 import com.vinihans.persons_app.view.view_model.PeopleViewModel;
+import com.vinihans.persons_app.view.view_model.RegisterActivity;
 
 import java.util.List;
 
@@ -29,15 +31,13 @@ public class PeopleActivity extends AppCompatActivity {
 
     private String token;
 
+    private FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons);
 
-        recyclerView = findViewById(R.id.recyclerViewPeople);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        peopleAdapter = new PeopleAdapter(null);
-        recyclerView.setAdapter(peopleAdapter);
+        prepareScreen();
 
         this.peopleViewModel = new ViewModelProvider(this).get(PeopleViewModel.class);
 
@@ -50,6 +50,18 @@ public class PeopleActivity extends AppCompatActivity {
 
     }
 
+    public void prepareScreen(){
+        recyclerView = findViewById(R.id.recyclerViewPeople);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        peopleAdapter = new PeopleAdapter(null);
+        recyclerView.setAdapter(peopleAdapter);
+
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        floatingActionButton.setOnClickListener(view -> {
+                Intent i = new Intent(PeopleActivity.this, RegisterActivity.class);
+                startActivity(i);
+        });
+    }
 
 
     private void observePeople(){

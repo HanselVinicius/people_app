@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements LoginCallback {
     private EditText senha;
 
     private Button button;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

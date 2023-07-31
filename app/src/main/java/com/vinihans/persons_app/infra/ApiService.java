@@ -5,10 +5,12 @@ import com.vinihans.persons_app.model.user.User;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface ApiService {
 
@@ -18,5 +20,8 @@ public interface ApiService {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("/v1/people")
     Call<ResponseBody> getAll(@Header("Authorization") String auth);
+
+    @DELETE("/v1/people/{id}")
+    Call<ResponseBody> delete(@Path("id") Long id);
 
 }

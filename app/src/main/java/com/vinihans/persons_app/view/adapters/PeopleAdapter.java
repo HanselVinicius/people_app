@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vinihans.persons_app.Application;
 import com.vinihans.persons_app.R;
 import com.vinihans.persons_app.model.people.People;
 
@@ -35,7 +36,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         holder.nameField.setText(person.getNome());
         holder.telefoneField.setText(person.getTelefone());
         holder.enderecoField.setText(person.getEndereco().getRua() +", "+ person.getEndereco().getBairro()+", "+person.getEndereco().getBairro());
-
+        holder.nameField.setOnClickListener(view -> Application.apiService.delete(person.getId()));
     }
 
     @Override

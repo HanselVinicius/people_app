@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.view_model.RegisterActivity">
+
+    <!-- Nome -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Nome"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Data de Aniversário -->
+    <EditText
+        android:id="@+id/editTextBirthday"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Data de Aniversário"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+
+    <!-- Endereço - Rua -->
+    <EditText
+        android:id="@+id/editTextStreet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Rua"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextBirthday" />
+
+    <!-- Endereço - Número -->
+    <EditText
+        android:id="@+id/editTextNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Número"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextStreet" />
+
+    <!-- Endereço - Complemento -->
+    <EditText
+        android:id="@+id/editTextComplement"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Complemento"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumber" />
+
+    <!-- Endereço - Bairro -->
+    <EditText
+        android:id="@+id/editTextNeighborhood"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Bairro"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextComplement" />
+
+    <!-- Endereço - Cidade -->
+    <EditText
+        android:id="@+id/editTextCity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Cidade"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNeighborhood" />
+
+    <!-- Endereço - CEP -->
+    <EditText
+        android:id="@+id/editTextZipCode"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="CEP"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCity" />
+
+    <!-- Endereço - UF -->
+    <EditText
+        android:id="@+id/editTextState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="UF"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextZipCode" />
+
+    <!-- Telefone -->
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Telefone"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextState" />
+
+    <!-- CPF -->
+    <EditText
+        android:id="@+id/editTextCPF"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="CPF"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+    <!-- Botão de Registro -->
+    <Button
+        android:id="@+id/buttonRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCPF" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
