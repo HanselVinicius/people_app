@@ -1,4 +1,4 @@
-package com.vinihans.persons_app.view.view_model;
+package com.vinihans.persons_app.view_model.people;
 
 import android.util.Log;
 
@@ -38,6 +38,7 @@ public class PeopleViewModel extends ViewModel {
                             if (response.isSuccessful()) {
 
                                 String json = responseBody.string();
+                                Log.e(TAG, "onResponse: response body " +json );
                                 Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX").create();
                                 PeopleResponseModel responseModel = gson.fromJson(json, PeopleResponseModel.class);
                                 List<People> peopleList = responseModel.getContent();
@@ -73,16 +74,44 @@ public class PeopleViewModel extends ViewModel {
                     List<People> currentPeopleList = listOfPeople.getValue();
                     currentPeopleList.remove(people);
                     listOfPeople.postValue(currentPeopleList);
+                }else {
+                    //TODO add to error message
+
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 // handle something???
+                //TODO add to error message
+
                 Log.e(TAG, "onFailure:  error on request ", t );
             }
         });
 
+    }
+
+
+    public void createOne(People people,String token){
+        Call<ResponseBody> register = Application.apiService.register(people, token);
+        register.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()){
+                    List<People> currentList = listOfPeople.getValue();
+                    currentList.add(people);
+                    listOfPeople.postValue(currentList);
+                }else {
+                    //TODO add to error message
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                //TODO add to error message
+
+            }
+        });
     }
 
 

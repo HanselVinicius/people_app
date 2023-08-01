@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.view_model.RegisterActivity">
+    tools:context=".view.RegisterActivity">
 
     <!-- Nome -->
     <EditText
@@ -19,15 +26,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Data de Aniversário -->
-    <EditText
-        android:id="@+id/editTextBirthday"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputBirthday"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Data de Aniversário"
-        android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextBirthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:focusable="false"
+            android:onClick="showDatePickerDialog" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Endereço - Rua -->
     <EditText
@@ -38,7 +54,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextBirthday" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputBirthday" />
 
     <!-- Endereço - Número -->
     <EditText
@@ -123,7 +139,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="CPF"
-        android:inputType="number"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
@@ -139,3 +155,4 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextCPF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

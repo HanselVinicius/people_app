@@ -1,12 +1,11 @@
 package com.vinihans.persons_app.utils;
 
-import static com.vinihans.persons_app.view.view_model.PeopleViewModel.deleteOne;
+import static com.vinihans.persons_app.view_model.people.PeopleViewModel.deleteOne;
 
 import android.app.AlertDialog;
 import android.content.Context;
 
 import com.vinihans.persons_app.model.people.People;
-import com.vinihans.persons_app.view.view_model.PeopleViewModel;
 
 
 public class AlertDialogUtil {

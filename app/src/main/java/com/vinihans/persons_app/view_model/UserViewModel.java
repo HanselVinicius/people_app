@@ -1,4 +1,4 @@
-package com.vinihans.persons_app.view.view_model;
+package com.vinihans.persons_app.view_model;
 
 import android.content.SharedPreferences;
 import android.util.Log;

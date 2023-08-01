@@ -1,5 +1,6 @@
 package com.vinihans.persons_app.infra;
 
+import com.vinihans.persons_app.model.people.People;
 import com.vinihans.persons_app.model.user.User;
 
 import okhttp3.ResponseBody;
@@ -24,5 +25,9 @@ public interface ApiService {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @DELETE("/v1/people/{id}")
     Call<ResponseBody> delete(@Path("id") Long id,@Header("Authorization") String auth);
+
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+    @POST("/v1/people")
+    Call<ResponseBody> register(@Body People people,@Header("Authorization") String auth);
 
 }

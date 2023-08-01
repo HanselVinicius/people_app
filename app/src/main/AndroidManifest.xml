@@ -17,7 +17,7 @@
         android:theme="@style/Theme.Persons_app"
         tools:targetApi="31">
         <activity
-            android:name=".view.view_model.RegisterActivity"
+            android:name=".view.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".view.PeopleActivity"

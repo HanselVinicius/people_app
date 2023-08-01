@@ -13,8 +13,8 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.vinihans.persons_app.R;
 import com.vinihans.persons_app.view.adapters.PeopleAdapter;
-import com.vinihans.persons_app.view.view_model.PeopleViewModel;
-import com.vinihans.persons_app.view.view_model.RegisterActivity;
+import com.vinihans.persons_app.view_model.people.PeopleViewModel;
+import com.vinihans.persons_app.view_model.people.PeopleViewModelFactory;
 
 public class PeopleActivity extends AppCompatActivity {
 
@@ -30,12 +30,13 @@ public class PeopleActivity extends AppCompatActivity {
     private FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        PeopleViewModelFactory viewModelFactory = new PeopleViewModelFactory(getApplication());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_persons);
 
         prepareScreen();
 
-        this.peopleViewModel = new ViewModelProvider(this).get(PeopleViewModel.class);
+        this.peopleViewModel = new ViewModelProvider(this,viewModelFactory).get(PeopleViewModel.class);
 
         Intent intent = getIntent();
         this.token = intent.getStringExtra("token");
@@ -54,6 +55,7 @@ public class PeopleActivity extends AppCompatActivity {
         floatingActionButton = findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(view -> {
                 Intent i = new Intent(PeopleActivity.this, RegisterActivity.class);
+                i.putExtra("token",this.token);
                 startActivity(i);
         });
     }

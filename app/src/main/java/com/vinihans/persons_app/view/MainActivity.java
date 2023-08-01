@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.vinihans.persons_app.R;
 import com.vinihans.persons_app.infra.LoginCallback;
 import com.vinihans.persons_app.model.user.User;
-import com.vinihans.persons_app.view.view_model.UserViewModel;
+import com.vinihans.persons_app.view_model.UserViewModel;
 
 public class MainActivity extends AppCompatActivity implements LoginCallback {
 
