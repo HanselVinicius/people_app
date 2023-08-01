@@ -129,6 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
                         , this.phoneEditText.getText().toString());
 
                 peopleViewModel.createOne(people, this.token);
+                finish();
             }
         }
             }

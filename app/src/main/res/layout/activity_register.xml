@@ -120,6 +120,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:maxLength="2"
         app:layout_constraintTop_toBottomOf="@+id/editTextZipCode" />
 
     <!-- Telefone -->

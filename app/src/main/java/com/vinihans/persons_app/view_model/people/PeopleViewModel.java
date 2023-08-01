@@ -20,7 +20,7 @@ import retrofit2.Response;
 public class PeopleViewModel extends ViewModel {
 
     private static final String TAG = "VIEW MODEL PEOPLE";
-    private final MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
+    private static final MutableLiveData<Integer> errorMessage = new MutableLiveData<>();
 
     private static final MutableLiveData<List<People>> listOfPeople = new MutableLiveData<>();
 
@@ -75,16 +75,14 @@ public class PeopleViewModel extends ViewModel {
                     currentPeopleList.remove(people);
                     listOfPeople.postValue(currentPeopleList);
                 }else {
-                    //TODO add to error message
-
+                    errorMessage.postValue(403);
+                    Log.e(TAG, "onResponse: ERRO NA OPERAÇÃO DE DELETAR " +response.raw() );
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 // handle something???
-                //TODO add to error message
-
                 Log.e(TAG, "onFailure:  error on request ", t );
             }
         });
@@ -102,13 +100,14 @@ public class PeopleViewModel extends ViewModel {
                     currentList.add(people);
                     listOfPeople.postValue(currentList);
                 }else {
-                    //TODO add to error message
+                    errorMessage.postValue(403);
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                //TODO add to error message
+
+                Log.e(TAG, "onFailure:  error on request ", t );
 
             }
         });
